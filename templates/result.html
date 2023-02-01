@@ -1,0 +1,19 @@
+Moikka, {{ name }}!
+
+Valitsit pizzan {{ pizza }}
+<p>
+Seuraavat lisät:
+<ul>
+{% for extra in extras %}
+<li> {{ extra }}
+{% endfor %}
+</ul>
+Erikoistoiveet: <br>
+{{ message }}
+
+<form action="/result" method="POST">
+    Nimi: <input type="text" name="name">
+    <br>
+    <input type="submit" value="Lähetä">
+    </form>
+    
