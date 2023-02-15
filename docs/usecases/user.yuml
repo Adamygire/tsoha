@@ -1,0 +1,7 @@
+// {type:usecase}
+// {direction:leftToRight}
+// {generate:true}
+
+[User]-(Sign in/out)
+[User]-(Create reviews)
+[User]-(Post comments)

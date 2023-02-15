@@ -1,0 +1,11 @@
+// {type:usecase}
+// {direction:leftToRight}
+// {generate:true}
+
+[Visitor]-(Sign up)
+[Visitor]-(Sign in)
+[Visitor]-(View the map)
+[Visitor]-(View reviews)
+[Visitor]-(Read comments)
+[Visitor]-(Search for restaurants)
+[Visitor]-(View top rated restaurants)

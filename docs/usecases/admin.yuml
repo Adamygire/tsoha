@@ -1,0 +1,11 @@
+// {type:usecase}
+// {direction:leftToRight}
+// {generate:true}
+
+
+[Admin]-(Delete users)
+[Admin]-(Delete reviews)
+[Admin]-(Delete comments)
+[Admin]-(Manage restaurants)
+[Admin]-(Update the map)
+[Admin]-(Update top rated restaurants)
