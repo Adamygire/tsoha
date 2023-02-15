@@ -1,0 +1,38 @@
+Table users as U {
+  id          int [pk, increment]
+  name        varchar
+  username    varchar
+  password    varchar
+  isAdmin     boolean
+  created_at  datetime [default: `now()`]
+}
+
+Table restaurants as R {
+  id             int [pk, increment]
+  name           varchar
+  description    varchar
+  latitude       varchar
+  longitude      varchar
+}
+
+Table reviews as RW {
+  id             int [pk, increment]
+  user_id int [ref: > U.id]
+  restaurants_id int [ref: > R.id, unique]
+  rating varchar
+  text   varchar
+}
+
+Table comments as C {
+  text varchar
+  user_id int [ref: > U.id, unique]
+  review_id int [ref: > RW.id, unique]
+}
+
+
+Table categories as CA {
+  id            int [pk, increment]
+  name          varchar
+}
+
+Ref: CA.id <> R.id

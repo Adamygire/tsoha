@@ -31,12 +31,12 @@ List here the actors in the user stories
 ![Visitor Stories](./docs/usecases/visitor.svg)
 
 ### Users Stories:
-- A User can do everithing that visitor can
+- [ ] A User can do everithing that visitor can
 - [ ] A User can loggin and loggout
 - [ ] A User can write reviews
 - [ ] A User can post comments
 
-![Visitor Stories](./docs/usecases/user.svg)
+![Users Stories](./docs/usecases/user.svg)
 
 
 ### Admin Stories:
@@ -47,4 +47,12 @@ List here the actors in the user stories
 - [ ] An Admin can update the map
 - [ ] An Admin can update top rated restaurants
 
-![Visitor Stories](./docs/usecases/admin.svg)
+![Admin Stories](./docs/usecases/admin.svg)
+
+## Data
+
+### Model
+![Data Model](./docs/data/models.svg)
+
+### Database
+![Database Model](./docs/data/diagram.png)

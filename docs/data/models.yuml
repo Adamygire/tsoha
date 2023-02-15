@@ -1,0 +1,21 @@
+// {type:class}
+// {direction:topDown}
+// {generate:true}
+
+
+// Classes and their attributes
+[User|name: String; username: String; password: String]
+[Restaurant|name: String; description: String; location: String; ]
+[Review|rating: Integer; text: String]
+[Comment|text: String]
+[Category|name: String]
+
+
+// Relations
+[Admin]-^[User]
+
+[Restaurant]*-*[Category]
+[Restaurant]-*[Review]
+[Review]-*[Comment]
+[User]-*[Comment]
+[User]-*[Review]
