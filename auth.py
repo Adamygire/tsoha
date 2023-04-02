@@ -1,42 +1,68 @@
-from flask import Blueprint, render_template, redirect, url_for, request, login_user, login_required, logout_user
+from flask import Blueprint, flash, render_template, redirect, url_for, request
 from werkzeug.security import generate_password_hash, check_password_hash
-from .models import User
 from . import db
 
-auth = Blueprint('auth', __name__)
+bp = Blueprint('auth', __name__)
 
-@auth.route('/login', methods=['POST'])
-def login_post():
-    # login code goes here
-    email = request.form.get('email')
-    password = request.form.get('password')
-    remember = True if request.form.get('remember') else False
+@bp.route('/register', methods=('GET', 'POST'))
+def register():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        name = request.form['name']
+        error = None
 
-    user = User.query.filter_by(email=email).first()
+        print(username, generate_password_hash(password), name)
 
-    if not user or not check_password_hash(user.password, password):
-        flash('Please check your login details and try again.')
-        return redirect(url_for('auth.login')) # if the user doesn't exist or password is wrong, reload the page
-    login_user(user, remember=remember)   
-    return redirect(url_for('main.profile'))
+        if not username:
+            error = 'Username is required.'
+        elif not password:
+            error = 'Password is required.'
+        elif not name:
+            error = 'Name is required.'
 
-@auth.route('/signup', methods=['POST'])
-def signup_post():
-    email = request.form.get('email')
-    name = request.form.get('name')
-    password = request.form.get('password')
-    user = User.query.filter_by(email=email).first() 
-    
-    if user: 
-        return redirect(url_for('auth.signup'))
 
-    new_user = User(email=email, name=name, password=generate_password_hash(password, method='sha256'))
-    db.session.add(new_user)
-    db.session.commit()
-    return redirect(url_for('auth.login'))
+        if error is None:
+            try:
+                db.session.execute(
+                    "INSERT INTO users (username, password, name) VALUES (:username, :password,:name)",
+                    {
+                        'username': username, 
+                        'password': generate_password_hash(password),
+                        'name': name
+                    },
+                )
+                db.session.commit()
+            except db.IntegrityError:
+                error = f"User {username} is already registered."
+            else:
+                return redirect(url_for("auth.register"))
 
-@auth.route('/logout')
-@login_required
-def logout():
-    logout_user()
-    return redirect(url_for('main.index'))
+        flash(error)
+
+    return render_template('signup.html')
+
+@bp.route('/login', methods=('GET', 'POST'))
+def login():
+    if request.method == 'POST':
+        username = request.form['username']
+        password = request.form['password']
+        db = db.py
+        error = None
+        user = db.execute(
+            'SELECT * FROM user WHERE username = ?', (username,)
+        ).fetchone()
+
+        if user is None:
+            error = 'Incorrect username.'
+        elif not check_password_hash(user['password'], password):
+            error = 'Incorrect password.'
+
+        if error is None:
+            db.session.clear()
+            db.session['user_id'] = user['id']
+            return redirect(url_for('index'))
+
+        flash(error)
+
+    return render_template('login.html')

@@ -21,20 +21,21 @@ List here the actors in the user stories
 - Admin: a user that has special priviliges
 
 ### Visitor Stories:
-- [ ] A visitor can make an account 
-- [ ] A visitor can interact with the map
-- [ ] A visitor see reviews
-- [ ] A visitor can read comments
-- [ ] A visitor can search for specific restaurants
-- [ ] A visitor can see a list of top rated restaurants
+- [ ] A visitor can sign up at /signup
+- [ ] A visitor can interact with the map at /signup
+- [ ] A visitor see reviews at /restaurants/:restaurant_id
+- [ ] A visitor can read comments at /restaurants/:restaurant_id
+- [ ] A visitor can search for specific /restaurants
+- [ ] A visitor can see a list of top rated /restaurants
 
 ![Visitor Stories](./docs/usecases/visitor.svg)
 
 ### Users Stories:
 - [ ] A User can do everithing that visitor can
-- [ ] A User can loggin and loggout
-- [ ] A User can write reviews
-- [ ] A User can post comments
+- [ ] A User can sign in at /signin
+- [ ] A User can sign out at /signout
+- [ ] A User can write reviews at /restaurants/:restaurant_id
+- [ ] A User can post comments at /restaurants/:restaurant_id
 
 ![Users Stories](./docs/usecases/user.svg)
 
